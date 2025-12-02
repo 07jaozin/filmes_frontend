@@ -98,10 +98,76 @@ export async function Fetch_login(obj) {
 
     const data = await res.json()
 
+    localStorage.removeItem("usuario")
+
     localStorage.setItem("usuario",JSON.stringify(data))
 
     console.log(JSON.parse(localStorage.getItem("usuario")))
 
     return true
 
+}
+export async function Fetch_edit(obj) {
+    const formData = new FormData()
+
+    console.log(obj.email)
+    console.log(obj.senha)
+    formData.append("nome", obj.nome)
+    formData.append("email", obj.email)
+    formData.append("senha", obj.senha)
+    formData.append("foto", obj.foto)
+
+    console.log("form", formData)
+
+    const usuario = JSON.parse(localStorage.getItem("usuario"))
+
+    const res = await fetch(`${API_BASE}/${usuario.id}`,{
+        method:'PUT',
+        body: formData
+    })
+
+    if(!res.ok)  return false
+
+    const data = await res.json()
+
+    localStorage.removeItem("usuario")
+
+    localStorage.setItem("usuario",JSON.stringify(data))
+
+    console.log(JSON.parse(localStorage.getItem("usuario")))
+
+    return true
+
+}
+
+export async function Fetch_remover_foto(id) {
+    const res = await fetch(`${API_BASE}/foto/${id}`,{
+        method:'DELETE'
+    })
+
+    if(!res.ok)  return false
+
+    const data = await res.json()
+
+    const usuario = JSON.parse(localStorage.getItem("usuario"))
+
+    usuario.foto = "padrao.jpg"
+
+    localStorage.setItem("usuario", JSON.stringify(usuario))
+
+    return true
+}
+
+export async function Fetch_excluir_usuario(id) {
+    const res = await fetch(`${API_BASE}/${id}`,{
+        method:'DELETE'
+    })
+
+    if(!res.ok)  return false
+
+    const data = await res.json()
+
+    localStorage.removeItem("usuario")
+
+    return true
 }

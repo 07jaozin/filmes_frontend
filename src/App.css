@@ -43,8 +43,8 @@ section{
     padding: 3rem 0 2rem;
 }
 body{
-    background-color: var(--body-color);
-    color: var(--text-color);
+    background-color: #000000;
+    color: #fff;
 }
 .container{
     max-width: 1068px;

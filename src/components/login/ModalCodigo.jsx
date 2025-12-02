@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styles from "../../login.module.css";
-import { Fetch_codigo_verifica, Fetch_cadastro_usuario } from "../../../services/UsuarioServices";
+import { Fetch_codigo_verifica, Fetch_cadastro_usuario, Fetch_edit } from "../../../services/UsuarioServices";
 
 
-export default function ModalCodigo({dados, codigoVerifica, setModalCodigo, setSucesso, editar }) {
+export default function ModalCodigo({setDados, dados, codigoVerifica, setModalCodigo, setSucesso, editar, setUsuario }) {
     
     const [codigo, setCodigo] = useState("");
     const [mensagem, setMensagem] = useState("");
@@ -22,6 +22,15 @@ export default function ModalCodigo({dados, codigoVerifica, setModalCodigo, setS
             if(dados.verificacao){
                 console.log("ok!")
                 setModalCodigo(false)
+                return
+            }
+
+            if(editar){
+                console.log("editar:", dados)
+                await Fetch_edit(dados)
+                setModalCodigo(false)
+                setSucesso(true)
+                
                 return
             }
             setSucesso(true);

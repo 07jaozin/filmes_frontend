@@ -20,8 +20,8 @@ export function Canais_Filme({canais}) {
             
             
             <div className="movies-content container">
-                {canais.length > 0 ? (
-                    canais.map((canal) => (
+                {canais?.length > 0 ? (
+                    canais?.map((canal) => (
                         <Canais_row canal={canal} key={canal.id} />
                     ))
                 ) : (

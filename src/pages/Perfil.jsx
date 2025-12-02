@@ -4,6 +4,7 @@ import { Usuario_dados } from "../components/perfil/usuario";
 import { ModalEditarPerfil } from "../components/perfil/EditarPerfil";
 import ModalCodigo from "../components/login/ModalCodigo";
 import ModalSucesso from "../components/login/ModalSucesso";
+import styles from "../perfil.module.css";
 
 export function Perfil(){
      const [usuario, setUsuario] = useState(null);
@@ -13,7 +14,11 @@ export function Perfil(){
      const [showEditar, setShowEditar] = useState(false)
      const[codigo, setCodigo] = useState("")
     
-    
+    useEffect(() => {
+            document.body.classList.add(styles.body);
+            return () => document.body.classList.remove(styles.body);
+      }, []);
+
       useEffect(() => {
         try {
           const u = JSON.parse(localStorage.getItem("usuario"));
@@ -22,7 +27,7 @@ export function Perfil(){
         } catch {
           setUsuario(null);
         }
-      }, []);
+      }, [modalSucesso]);
 
     return(
     <>
@@ -36,6 +41,8 @@ export function Perfil(){
         )}
         {modalCodigo && (
                 <ModalCodigo
+                 editar={true}
+                 setUsuario={setUsuario}
                  setDados={setDados}
                  dados={dados} 
                  codigoVerifica={codigo} 
@@ -44,7 +51,7 @@ export function Perfil(){
         )}
         
         {modalSucesso && (
-            <ModalSucesso dados={dados} setSucesso={setSucesso}></ModalSucesso>
+            <ModalSucesso dados={dados} editar={true} setSucesso={setSucesso}></ModalSucesso>
         )}
     </>)
 }

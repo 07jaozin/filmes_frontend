@@ -1,5 +1,5 @@
 /* ======== RESET / BASE ======== */
-body {
+.body {
     font-family: 'Poppins', Arial, sans-serif;
     background: linear-gradient(135deg, #000000, #3f3f3f);
     margin: 0;

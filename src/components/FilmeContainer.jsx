@@ -33,7 +33,7 @@ export function FilmeContainer(){
            <br />
            <Descricao_filme filme={filme} />
 
-             <Canais_Filme canais={filme?.canais}/>
+            <Canais_Filme canais={filme?.canais}/>
            <br />
            <br />
            <br />

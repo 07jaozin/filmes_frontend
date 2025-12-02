@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../../login.module.css";
 
-export default function ModalSucesso({setSucesso, setIsRegistering}) {
+export default function ModalSucesso({setSucesso, setIsRegistering, editar}) {
     return (
         <div
             id="modal-sucesso"
@@ -10,11 +10,12 @@ export default function ModalSucesso({setSucesso, setIsRegistering}) {
             <div className={styles["modal-content"]}>
                 <i className='bx bx-check-circle'></i>
 
-                <h2>Cadastro realizado com sucesso!</h2>
-                <p>Agora você pode fazer login com sua conta.</p>
+                <h2>{editar ? "Cadastro realizado com sucesso!" : "Dados Atualizados com sucesso!"}</h2>
+                <p>{!editar && "Agora você pode fazer login com sua conta."}</p>
 
                 <button onClick={() => {
-                    setIsRegistering(false)
+
+                    if(!editar) setIsRegistering(false);
                     setSucesso(false)
                 }}
                  className={styles.btn} id="fechar-modal">

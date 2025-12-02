@@ -38,6 +38,7 @@ export function Comentario_linha({ comentario, idSession, idFilme, setComentar, 
         try {
           const u = JSON.parse(localStorage.getItem("usuario"));
           setUsuario(u);
+          console.log(comentario.id_usuario)
         } catch {
           setUsuario(null);
         }
@@ -56,7 +57,7 @@ export function Comentario_linha({ comentario, idSession, idFilme, setComentar, 
                         {renderEstrelas(comentario.avaliacao)}
                     </div>
 
-                    {comentario.id_usuario === usuario?.id && usuario?.tipo === "adm" && (
+                    {(comentario.id_usuario === usuario?.id || usuario?.tipo === "adm") && (
                         <div className="options-container">
 
                             

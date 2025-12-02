@@ -18,8 +18,9 @@ export function BarraPesquisa({setModalFiltrar ,setDados}){
         <>
             <form id="pesquisa" onSubmit={(e) => e.preventDefault()} className="search-box">
                    <input type="search" onChange={atualiza_campo} name="campo" id="search-input" placeholder="search movie" />
+                   <button onClick={() => setModalFiltrar(true)}>Filtrar</button>
             </form>
-            <button className="btn" onClick={() => setModalFiltrar(true)}>Filtrar</button>
+            
         </>
 
     )

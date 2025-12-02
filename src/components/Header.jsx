@@ -35,17 +35,18 @@ export function Header({setModalFiltrar, setComentar, pesquisar, setDados }) {
             </>
           )}
         </a>
-          {usuario && (
+          {usuario && !pesquisar && (
               <a href="" id="user-link" class="user">
                 <img id="user-img" src={`http://127.0.0.1:5000/static/img/${usuario.foto}`} alt="" class="user-img" />
               </a>
           )}
         
 
-        {pesquisar && <BarraPesquisa setModalFiltrar={setModalFiltrar} setDados={setDados} />}
+        {pesquisar && <BarraPesquisa setModalFiltrar={setModalFiltrar} setDados={setDados} />
+        }
 
         <div className="navbar">
-          <a href="/home" className="nav-link nav-active">
+          <a href="/" className="nav-link nav-active">
             <i className="bx bx-home"></i>
             <div className="nav-link-title">Inicio</div>
           </a>
@@ -56,7 +57,7 @@ export function Header({setModalFiltrar, setComentar, pesquisar, setDados }) {
           </a>
 
           {usuario?.tipo === "adm" && (
-            <a href="/filme/gerenciamento" className="nav-link">
+            <a href="/gerenciamento" className="nav-link">
               <i className="bx bx-tv"></i>
               <div className="nav-link-title">Gerenciamento</div>
             </a>
@@ -69,12 +70,13 @@ export function Header({setModalFiltrar, setComentar, pesquisar, setDados }) {
             </button>
           )}
 
-          <a href="/user/login" className="nav-link">
+          <a href={usuario ? "/perfil" : "/login"} className="nav-link">
             <i className="bx bx-user"></i>
             <div className="nav-link-title">
               {usuario ? "Perfil" : "Logar"}
             </div>
           </a>
+
         </div>
       </div>
     </header>
